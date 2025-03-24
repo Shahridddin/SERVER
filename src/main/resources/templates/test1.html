@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="uz" xmlns:c="jakarta.tags.core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="jakarta.tags.core ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadval va Sahifalash</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pagination {
+            display: inline-flex;
+            padding: 10px 0;
+            list-style: none;
+        }
+
+        .page-item {
+            margin: 0 5px;
+        }
+
+        .page-link {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1px solid #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+        .page-link:hover {
+            background-color: #0056b3;
+        }
+
+        .page-item.disabled .page-link {
+            background-color: #e0e0e0;
+            border-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .page-item.active .page-link {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Jadval va Sahifalash</h1>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ism</th>
+                <th scope="col">Familiya</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:set var="counter" value="1"/>
+            <c:forEach items="${page.content}" var="person">
+                <tr>
+                    <th>${counter}</th>
+                    <td>${person.firstName}</td>
+                    <td>${person.lastName}</td>
+                </tr>
+                <c:set var="counter" value="${counter + 1}"/>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Sahifalash -->
+    <div class="pagination-container">
+        <ul class="pagination">
+            <!-- Oldingi tugma -->
+            <c:if test="${page.number > 0}">
+                <li class="page-item">
+                    <a href="?page=${page.number - 1}" class="page-link" aria-label="Oldingi">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </c:if>
+
+            <!-- Sahifalar -->
+            <c:forEach begin="1" end="${page.totalPages}" var="i">
+                <li class="page-item ${i == page.number + 1 ? 'active' : ''}">
+                    <a href="?page=${i - 1}" class="page-link">${i}</a>
+                </li>
+            </c:forEach>
+
+            <!-- Keyingi tugma -->
+            <c:if test="${page.number < page.totalPages - 1}">
+                <li class="page-item">
+                    <a href="?page=${page.number + 1}" class="page-link" aria-label="Keyingi">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:if>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
