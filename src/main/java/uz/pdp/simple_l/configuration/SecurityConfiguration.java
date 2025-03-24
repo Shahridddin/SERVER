@@ -55,12 +55,17 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         // Hamma uchun ochiq sahifalar
                         .requestMatchers(PUBLIC_PAGES).permitAll()
-
                         // User uchun ruxsat berilgan sahifalar
                         .requestMatchers("/user/page-get").hasRole("USER")
 
                         // Admin uchun ruxsat berilgan sahifalar
-                        .requestMatchers("/admin/page-get").hasRole("ADMIN")
+                        .requestMatchers("/admin/page-get",
+                                "/auth/active/users",
+                                "/auth/active/block/{id}",
+                                "/auth/active/delete/{id}",
+                                "/auth/inactive/users",
+                                "/auth/inactive/activate/{id}",
+                                "/auth/inactive/{id}").hasRole("ADMIN")
 
                         // Barcha boshqa so‘rovlar autentifikatsiyani talab qiladi
                         .anyRequest().authenticated()

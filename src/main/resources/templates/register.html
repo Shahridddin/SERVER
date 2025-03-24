@@ -15,17 +15,17 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            padding: 10px;
         }
         .register-container {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: #e0e0e0; /* Ochroq kulrang fon */
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6); /* Chuqurroq qora soya */
             width: 100%;
             max-width: 400px;
         }
         .register-container h2 {
+            text-align: center;
             margin-bottom: 20px;
         }
         .message {
@@ -36,21 +36,23 @@
         }
         .error {
             background-color: #f8d7da;
+            width: 95%;
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
         .success {
             background-color: #d4edda;
+            width: 95%;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
         .input-group {
             margin-bottom: 15px;
-            text-align: left;
         }
         .input-group label {
             display: block;
             margin-bottom: 5px;
+            text-align: left;
         }
         .input-group input {
             width: 95%;
@@ -67,13 +69,16 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
-            transition: transform 0.3s, background-color 0.3s;
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
         }
+
         .btn:hover, .btn:active {
-            transform: scale(1.05);
-            background-color: #2a3c7f;
+            transform: scale(1.1); /* Tugma markazidan kattalashadi */
+            background-color: #1A285A;
         }
+
         .login-link {
+            text-align: center;
             margin-top: 10px;
         }
         .login-link a {
@@ -83,12 +88,32 @@
         .login-link a:hover {
             text-decoration: underline;
         }
-        @media (max-width: 500px) {
+
+        /* Media query for smaller devices */
+        @media (max-width: 768px) {
             .register-container {
                 padding: 15px;
             }
+
             .btn {
                 font-size: 14px;
+            }
+        }
+
+        /* Media query for very small devices (mobile phones) */
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 10px;
+                width: 90%;
+            }
+
+            .input-group input {
+                padding: 8px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 12px;
             }
         }
     </style>
@@ -97,37 +122,48 @@
 
 <div class="register-container">
     <h2>Ro'yxatdan o'tish</h2>
-    <div class="message error" style="display: none;" id="errorMessage"></div>
-    <div class="message success" style="display: none;" id="successMessage"></div>
-    <form action="/auth/create" method="post">
+
+    <!-- Xatolik xabari -->
+    <div th:if="${errorMessage}" class="message error">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <!-- Muvaffaqiyatli xabar -->
+    <div th:if="${successMessage}" class="message success">
+        <p th:text="${successMessage}"></p>
+    </div>
+
+    <form method="POST" action="/auth/create">
         <div class="input-group">
-            <label for="firstName">Ism</label>
-            <input type="text" id="firstName" name="firstName" required>
+            <label for="username">Foydalanuvchi nomi:</label>
+            <input type="text" id="username" name="username">
         </div>
         <div class="input-group">
-            <label for="lastName">Familiya</label>
-            <input type="text" id="lastName" name="lastName" required>
+            <label for="lastName">Familiya:</label>
+            <input type="text" id="lastName" name="lastName">
         </div>
         <div class="input-group">
-            <label for="username">Foydalanuvchi nomi</label>
-            <input type="text" id="username" name="username" required>
+            <label for="firstName">Ism:</label>
+            <input type="text" id="firstName" name="firstName">
         </div>
         <div class="input-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
         </div>
         <div class="input-group">
-            <label for="password">Parol</label>
-            <input type="password" id="password" name="password" required>
+            <label for="password">Parol:</label>
+            <input type="password" id="password" name="password">
         </div>
-        <button type="submit" class="btn">Ro‘yxatdan o‘tish</button>
+        <button type="submit" class="btn">Ro'yxatdan o'tish</button>
     </form>
+
     <div class="login-link">
         <a href="/auth/login">Kirish</a>
     </div>
 </div>
 
 <script>
+    // Xabarlarni avtomatik yashirish (3 sekunddan keyin)
     setTimeout(function() {
         document.querySelectorAll('.message').forEach(function(el) {
             el.style.display = 'none';

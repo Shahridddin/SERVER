@@ -118,8 +118,17 @@
             <!-- Faol foydalanuvchilar -->
             <div class="btn bg-[var(--nav-bg)] text-[var(--text-dark)] p-6 rounded-lg text-center shadow-lg hover:shadow-2xl transition">
                 <h2 class="text-lg md:text-xl font-semibold">Faol foydalanuvchilar</h2>
-                <p class="mt-2 text-sm md:text-base">Tizimda hozirda faol bo‘lgan foydalanuvchilar</p>
-                <form action="/active-users" method="GET">
+                <p class="mt-2 text-sm md:text-base">Tizimda hozirda faol bo‘lgan foydalanuvchilar.</p>
+                <form action="/auth/active/users" method="GET">
+                    <button type="submit" class="mt-4 bg-[var(--button-red)] text-white px-4 py-2 rounded hover:bg-red-700 transition">Ro‘yxat</button>
+                </form>
+            </div>
+
+            <!-- Faol bo`lmagan foydalanuvchilar -->
+            <div class="btn bg-[var(--nav-bg)] text-[var(--text-dark)] p-6 rounded-lg text-center shadow-lg hover:shadow-2xl transition">
+                <h2 class="text-lg md:text-xl font-semibold">Faol bo`lmagan foydalanuvchilar</h2>
+                <p class="mt-2 text-sm md:text-base">Tizimda hozirda faol bo‘lmagan foydalanuvchilar.</p>
+                <form action="/auth/inactive/users" method="GET">
                     <button type="submit" class="mt-4 bg-[var(--button-red)] text-white px-4 py-2 rounded hover:bg-red-700 transition">Ro‘yxat</button>
                 </form>
             </div>
