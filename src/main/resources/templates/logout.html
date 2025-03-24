@@ -5,47 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logout</title>
     <style>
+        /* 🌙 Dark Mode Design */
         body {
             font-family: Arial, sans-serif;
             background-color: #0d1117;
             color: #c9d1d9;
             text-align: center;
             margin: 0;
-            padding: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .container {
             width: 100%;
             max-width: 400px;
-            margin: 100px auto;
             background-color: #161b22;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
         .github-logo {
             width: 50px;
             margin-bottom: 10px;
         }
         h2 {
-            font-size: 18px;
-            margin: 10px 0;
+            font-size: 20px;
+            margin: 15px 0;
         }
+        /* 🔹 User Box (Moslashuvchan dizayn) */
         .user-box {
             background-color: #21262d;
-            padding: 10px;
+            padding: 12px;
             border-radius: 5px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 10px;
+            flex-wrap: wrap; /* 📱 Mobil qurilmalar uchun */
         }
         .user-info {
             display: flex;
             align-items: center;
+            flex: 1;
+            min-width: 200px;
+            justify-content: center;
         }
         .avatar {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             margin-right: 10px;
         }
@@ -53,13 +62,16 @@
             font-size: 16px;
             font-weight: bold;
         }
+        /* 🔹 Sign Out Buttons */
         .signout-btn {
             background-color: #238636;
             border: none;
-            padding: 5px 10px;
+            padding: 8px 14px;
             border-radius: 5px;
             color: white;
             cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
         }
         .signout-btn:hover {
             background-color: #2ea043;
@@ -68,11 +80,13 @@
             width: 100%;
             background-color: #f85149;
             border: none;
-            padding: 10px;
+            padding: 12px;
             border-radius: 5px;
             color: white;
             font-size: 16px;
             cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
         }
         .signout-all:hover {
             background-color: #da3633;
@@ -82,14 +96,33 @@
             font-size: 12px;
             color: #8b949e;
         }
+
+        /* 📱 Responsiv dizayn - Kichik ekranlar uchun */
+        @media screen and (max-width: 480px) {
+            .user-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+            .signout-btn {
+                width: 100%; /* 📱 Mobil ekranda tugma butunlay chiqadi */
+                margin-top: 10px;
+            }
+            .user-info {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- 🔹 GitHub Logotipi -->
     <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" class="github-logo">
+
     <h2>Select account to sign out</h2>
 
+    <!-- 🔹 Foydalanuvchi uchun chiqish qutisi -->
     <div class="user-box">
         <div class="user-info">
             <img src="https://avatars.githubusercontent.com/u/583231" alt="User Avatar" class="avatar">
@@ -102,13 +135,10 @@
         </form>
     </div>
 
+    <!-- 🔹 Barcha akkauntlardan chiqish tugmasi -->
     <form action="/auth/logout-all" method="post">
         <button type="submit" class="signout-all">Sign out from all accounts</button>
     </form>
-</div>
-
-<div class="footer">
-    Terms &nbsp;•&nbsp; Privacy &nbsp;•&nbsp; Docs &nbsp;•&nbsp; Contact GitHub Support
 </div>
 
 </body>
