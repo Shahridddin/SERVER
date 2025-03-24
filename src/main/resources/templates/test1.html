@@ -1,153 +1,151 @@
 <!DOCTYPE html>
-<html lang="uz" xmlns:c="jakarta.tags.core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="jakarta.tags.core ">
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadval va Sahifalash</title>
+    <title>Login Sahifasi</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding-top: 50px;
-        }
-
-        h1 {
+        body {
+            font-family: Arial, sans-serif;
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        .pagination-container {
+            background: url('https://www.ito.org.tr/documents/Haber/news/detail_page_books_in_134_languages_available_24_7_04.jpg') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            padding: 20px;
         }
-
-        .pagination {
-            display: inline-flex;
-            padding: 10px 0;
-            list-style: none;
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
         }
-
-        .page-item {
-            margin: 0 5px;
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
         }
-
-        .page-link {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
+        .message {
+            text-align: center;
+            margin-bottom: 10px;
+            padding: 10px;
             border-radius: 5px;
-            border: 1px solid #007bff;
-            transition: background-color 0.3s ease;
+            display: none;
         }
-
-        .page-link:hover {
-            background-color: #0056b3;
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
-
-        .page-item.disabled .page-link {
-            background-color: #e0e0e0;
-            border-color: #ccc;
-            cursor: not-allowed;
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
         }
-
-        .page-item.active .page-link {
-            background-color: #0056b3;
-            border-color: #0056b3;
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #444;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .input-group input:focus {
+            border-color: #1A285A;
+            outline: none;
+            box-shadow: 0 0 5px rgba(26, 40, 90, 0.5);
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #1A285A;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease-in-out, transform 0.2s;
+        }
+        .btn:hover {
+            background-color: #14204E;
+            transform: scale(1.05);
+        }
+        .forgot-password, .register-link {
+            text-align: center;
+            margin-top: 12px;
+        }
+        .forgot-password a, .register-link a {
+            color: #1A285A;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .forgot-password a:hover, .register-link a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 20px;
+                border-radius: 10px;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Jadval va Sahifalash</h1>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Ism</th>
-                <th scope="col">Familiya</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:set var="counter" value="1"/>
-            <c:forEach items="${page.content}" var="person">
-                <tr>
-                    <th>${counter}</th>
-                    <td>${person.firstName}</td>
-                    <td>${person.lastName}</td>
-                </tr>
-                <c:set var="counter" value="${counter + 1}"/>
-            </c:forEach>
-            </tbody>
-        </table>
+<div class="login-container">
+    <h2>Kirish</h2>
+
+    <!-- Xabarlar -->
+    <div id="errorMessage" class="message error">Noto‘g‘ri foydalanuvchi nomi yoki parol!</div>
+    <div id="successMessage" class="message success">Muvaffaqiyatli kirdingiz!</div>
+
+    <form action="/auth/login" method="POST">
+        <div class="input-group">
+            <label for="username">Foydalanuvchi nomi</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Parol</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn">Kirish</button>
+    </form>
+
+    <div class="forgot-password">
+        <a href="/password/reset">Parolni unutdingizmi?</a>
     </div>
-
-    <!-- Sahifalash -->
-    <div class="pagination-container">
-        <ul class="pagination">
-            <!-- Oldingi tugma -->
-            <c:if test="${page.number > 0}">
-                <li class="page-item">
-                    <a href="?page=${page.number - 1}" class="page-link" aria-label="Oldingi">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-            </c:if>
-
-            <!-- Sahifalar -->
-            <c:forEach begin="1" end="${page.totalPages}" var="i">
-                <li class="page-item ${i == page.number + 1 ? 'active' : ''}">
-                    <a href="?page=${i - 1}" class="page-link">${i}</a>
-                </li>
-            </c:forEach>
-
-            <!-- Keyingi tugma -->
-            <c:if test="${page.number < page.totalPages - 1}">
-                <li class="page-item">
-                    <a href="?page=${page.number + 1}" class="page-link" aria-label="Keyingi">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </c:if>
-        </ul>
+    <div class="register-link">
+        <a href="/auth/register">Ro‘yxatdan o‘tish</a>
     </div>
 </div>
+
+<script>
+    // Xabarlarni avtomatik yashirish (3 sekunddan keyin)
+    setTimeout(function() {
+        document.querySelectorAll('.message').forEach(function(el) {
+            el.style.display = 'none';
+        });
+    }, 3000);
+</script>
 
 </body>
 </html>

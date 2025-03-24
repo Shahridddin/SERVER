@@ -5,113 +5,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Sahifasi</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             background: url('https://www.ito.org.tr/documents/Haber/news/detail_page_books_in_134_languages_available_24_7_04.jpg') no-repeat center center fixed;
-            background-size: contain;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            padding: 20px;
         }
         .login-container {
-            background-color: #e0e0e0;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 320px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
         }
         .login-container h2 {
             text-align: center;
             margin-bottom: 20px;
+            color: #333;
         }
         .message {
             text-align: center;
             margin-bottom: 10px;
             padding: 10px;
-            border-radius: 4px;
-            display: block;
+            border-radius: 5px;
+            display: none;
         }
         .error {
             background-color: #f8d7da;
-            width: 95%;
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
         .success {
             background-color: #d4edda;
-            width: 95%;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
         .input-group {
             margin-bottom: 15px;
+            text-align: left;
         }
         .input-group label {
             display: block;
             margin-bottom: 5px;
-            text-align: left;
+            font-weight: bold;
+            color: #444;
         }
         .input-group input {
-            width: 95%;
-            padding: 10px;
-            border-radius: 4px;
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
             border: 1px solid #ccc;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .input-group input:focus {
+            border-color: #1A285A;
+            outline: none;
+            box-shadow: 0 0 5px rgba(26, 40, 90, 0.5);
         }
         .btn {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #1A285A;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 16px;
-            transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            transition: background-color 0.3s ease-in-out, transform 0.2s;
         }
-
-        .btn:hover, .btn:active {
-            transform: scale(1.1);
-            background-color: #1A285A;
+        .btn:hover {
+            background-color: #14204E;
+            transform: scale(1.05);
         }
         .forgot-password, .register-link {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 12px;
         }
         .forgot-password a, .register-link a {
-            color: black;
+            color: #1A285A;
             text-decoration: none;
+            font-weight: bold;
         }
         .forgot-password a:hover, .register-link a:hover {
             text-decoration: underline;
+        }
+
+        /* 📌 Planshet va kichikroq ekranlar uchun */
+        @media (max-width: 768px) {
+            .login-container {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+
+        /* 📌 Telefonlar uchun */
+        @media (max-width: 480px) {
+            .login-container {
+                width: 95%;
+                padding: 15px;
+                border-radius: 10px;
+            }
+            .btn {
+                font-size: 14px;
+                padding: 10px;
+            }
+            .input-group input {
+                font-size: 14px;
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="login-container">
-    <h2>Login</h2>
+    <h2>Kirish</h2>
 
-    <!-- Xatolik xabari -->
-    <div th:if="${errorMessage}" class="message error">
-        <p th:text="${errorMessage}"></p>
-    </div>
-
-    <!-- Muvaffaqiyatli xabar -->
-    <div th:if="${successMessage}" class="message success">
-        <p th:text="${successMessage}"></p>
-    </div>
+    <!-- Xabarlar -->
+    <div id="errorMessage" class="message error">Noto‘g‘ri foydalanuvchi nomi yoki parol!</div>
+    <div id="successMessage" class="message success">Muvaffaqiyatli kirdingiz!</div>
 
     <form action="/auth/login" method="POST">
         <div class="input-group">
             <label for="username">Foydalanuvchi nomi</label>
-            <input type="text" id="username" name="username" >
+            <input type="text" id="username" name="username" required>
         </div>
         <div class="input-group">
             <label for="password">Parol</label>
-            <input type="password" id="password" name="password" >
+            <input type="password" id="password" name="password" required>
         </div>
         <button type="submit" class="btn">Kirish</button>
     </form>
@@ -120,7 +153,7 @@
         <a href="/password/reset">Parolni unutdingizmi?</a>
     </div>
     <div class="register-link">
-        <a href="/auth/register">Ro'yxatdan o'tish</a>
+        <a href="/auth/register">Ro‘yxatdan o‘tish</a>
     </div>
 </div>
 
