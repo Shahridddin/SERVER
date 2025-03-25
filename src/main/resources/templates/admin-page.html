@@ -88,20 +88,20 @@
 
     <div class="flex justify-center items-center min-h-screen">
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full px-4">
-            <!-- Kitob Qo'shish -->
+            <!-- Kategoriya Qo'shish -->
             <div class="btn bg-[var(--nav-bg)] text-[var(--text-dark)] p-6 rounded-lg text-center shadow-lg hover:shadow-2xl transition">
-                <h2 class="text-lg md:text-xl font-semibold">Kitob Qo'shish</h2>
-                <p class="mt-2 text-sm md:text-base">Yangi kitoblarni kutubxonaga qo'shish.</p>
-                <form action="/add-book" method="GET">
+                <h2 class="text-lg md:text-xl font-semibold">Kategoriya Qo'shish</h2>
+                <p class="mt-2 text-sm md:text-base">Yangi kategoriya qo'shish.</p>
+                <form action="/category/get/page" method="GET">
                     <button type="submit" class="mt-4 bg-[var(--button-green)] text-white px-4 py-2 rounded hover:bg-green-700 transition">Qo'shish</button>
                 </form>
             </div>
 
-            <!-- Mavjud Kitoblar -->
+            <!-- Kategoriyalar ro`yxati -->
             <div class="btn bg-[var(--nav-bg)] text-[var(--text-dark)] p-6 rounded-lg text-center shadow-lg hover:shadow-2xl transition">
-                <h2 class="text-lg md:text-xl font-semibold">Mavjud Kitoblar</h2>
-                <p class="mt-2 text-sm md:text-base">Kutubxonadagi barcha kitoblarni ko'rish.</p>
-                <form action="/view-books" method="GET">
+                <h2 class="text-lg md:text-xl font-semibold">Kategoriyalar ro`yxati</h2>
+                <p class="mt-2 text-sm md:text-base">Kitob turlari bo`yicha kategoriyalar ro`yxati berilgan.</p>
+                <form action="/category/get-list" method="GET">
                     <button type="submit" class="mt-4 bg-[var(--button-blue)] text-white px-4 py-2 rounded hover:bg-blue-700 transition">Ko'rish</button>
                 </form>
             </div>
@@ -110,7 +110,7 @@
             <div class="btn bg-[var(--nav-bg)] text-[var(--text-dark)] p-6 rounded-lg text-center shadow-lg hover:shadow-2xl transition">
                 <h2 class="text-lg md:text-xl font-semibold">O'qish</h2>
                 <p class="mt-2 text-sm md:text-base">Elektron kitoblarni o'qish va yuklab olish.</p>
-                <form action="/read-books" method="GET">
+                <form action="/books" method="GET">
                     <button type="submit" class="mt-4 bg-[var(--button-purple)] text-white px-4 py-2 rounded hover:bg-purple-700 transition">O'qish</button>
                 </form>
             </div>
@@ -132,6 +132,7 @@
                     <button type="submit" class="mt-4 bg-[var(--button-red)] text-white px-4 py-2 rounded hover:bg-red-700 transition">Ro‘yxat</button>
                 </form>
             </div>
+
         </section>
     </div>
 

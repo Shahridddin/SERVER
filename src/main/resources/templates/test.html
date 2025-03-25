@@ -3,137 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ro'yxatdan o'tish</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: url('https://www.ito.org.tr/documents/Haber/news/detail_page_books_in_134_languages_available_24_7_04.jpg') no-repeat center center fixed;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 10px;
-        }
-        .register-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
-            width: 100%;
-            max-width: 400px;
-        }
-        .register-container h2 {
-            margin-bottom: 20px;
-        }
-        .message {
-            text-align: center;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 4px;
-        }
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .input-group input {
-            width: 95%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-        .btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #1A285A;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: transform 0.3s, background-color 0.3s;
-        }
-        .btn:hover, .btn:active {
-            transform: scale(1.05);
-            background-color: #2a3c7f;
-        }
-        .login-link {
-            margin-top: 10px;
-        }
-        .login-link a {
-            color: black;
-            text-decoration: none;
-        }
-        .login-link a:hover {
-            text-decoration: underline;
-        }
-        @media (max-width: 500px) {
-            .register-container {
-                padding: 15px;
-            }
-            .btn {
-                font-size: 14px;
-            }
-        }
-    </style>
+    <title>Kategoriyalar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="register-container">
-    <h2>Ro'yxatdan o'tish</h2>
-    <div class="message error" style="display: none;" id="errorMessage"></div>
-    <div class="message success" style="display: none;" id="successMessage"></div>
-    <form action="/auth/create" method="post">
-        <div class="input-group">
-            <label for="firstName">Ism</label>
-            <input type="text" id="firstName" name="firstName" >
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Kategoriyalar</h2>
+    <div class="row">
+        <!-- 1-kategoriya -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/300" class="card-img-top" alt="Kategoriya 1">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Kategoriya 1</h5>
+                    <p class="card-text">Bu kategoriya haqida qisqacha ma'lumot.</p>
+                    <a href="#" class="btn btn-primary">Batafsil</a>
+                </div>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="lastName">Familiya</label>
-            <input type="text" id="lastName" name="lastName" >
+        <!-- 2-kategoriya -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/300" class="card-img-top" alt="Kategoriya 2">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Kategoriya 2</h5>
+                    <p class="card-text">Bu kategoriya haqida qisqacha ma'lumot.</p>
+                    <a href="#" class="btn btn-primary">Batafsil</a>
+                </div>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="username">Foydalanuvchi nomi</label>
-            <input type="text" id="username" name="username" >
+        <!-- 3-kategoriya -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/300" class="card-img-top" alt="Kategoriya 3">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Kategoriya 3</h5>
+                    <p class="card-text">Bu kategoriya haqida qisqacha ma'lumot.</p>
+                    <a href="#" class="btn btn-primary">Batafsil</a>
+                </div>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" >
-        </div>
-        <div class="input-group">
-            <label for="password">Parol</label>
-            <input type="password" id="password" name="password" >
-        </div>
-        <button type="submit" class="btn">Ro‘yxatdan o‘tish</button>
-    </form>
-    <div class="login-link">
-        <a href="/auth/login">Kirish</a>
     </div>
 </div>
 
-<script>
-    setTimeout(function() {
-        document.querySelectorAll('.message').forEach(function(el) {
-            el.style.display = 'none';
-        });
-    }, 3000);
-</script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

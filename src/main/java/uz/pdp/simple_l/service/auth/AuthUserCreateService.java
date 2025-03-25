@@ -1,4 +1,4 @@
-package uz.pdp.simple_l.service;
+package uz.pdp.simple_l.service.auth;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

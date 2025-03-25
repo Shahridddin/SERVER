@@ -10,9 +10,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uz.pdp.simple_l.dto.auth.PasswordResetDto;
 import uz.pdp.simple_l.entity.AuthUser;
 import uz.pdp.simple_l.repository.AuthUserRepository;
-import uz.pdp.simple_l.service.EmailService;
+import uz.pdp.simple_l.service.email.EmailService;
 
-import java.util.List;
 import java.util.Optional;
 
 @Controller

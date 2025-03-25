@@ -1,4 +1,4 @@
-package uz.pdp.simple_l.service;
+package uz.pdp.simple_l.service.auth;
 
 import uz.pdp.simple_l.dto.auth.AuthUserCreateDto;
 

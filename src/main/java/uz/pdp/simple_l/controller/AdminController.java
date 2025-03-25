@@ -83,6 +83,4 @@ public class AdminController {
         authUserRepository.deleteById(id);
         return "redirect:/auth/inactive/users";
     }
-
-
 }

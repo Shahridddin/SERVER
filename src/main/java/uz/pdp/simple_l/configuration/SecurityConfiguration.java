@@ -6,7 +6,6 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,7 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import uz.pdp.simple_l.entity.AuthUser;
 import uz.pdp.simple_l.repository.AuthUserRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Configuration
@@ -43,7 +41,25 @@ public class SecurityConfiguration {
             "/current/user"
     };
 
-    public SecurityConfiguration(uz.pdp.simple_l.repository.AuthUserRepository authUserRepository, CustomAuthenticationSuccessHandler successHandler) {
+    private static final String[] ADMIN_PAGES = {
+            "/admin/page-get",
+            "/auth/active/users",
+            "/auth/active/block/{id}",
+            "/auth/active/delete/{id}",
+            "/auth/inactive/users",
+            "/auth/inactive/activate/{id}",
+            "/auth/inactive/{id}",
+            "/category/get/page",
+            "/create/category",
+            "/category/get-list",
+            "/auth/category/delete/{id}",
+            "/auth/category/add/{id}",
+            "/auth/category/{id}/save-book",
+            "/auth/category/add",
+            "/auth/book/open/{id}"
+    };
+
+    public SecurityConfiguration(AuthUserRepository authUserRepository, CustomAuthenticationSuccessHandler successHandler) {
         this.authUserRepository = authUserRepository;
         this.successHandler = successHandler;
     }
@@ -59,13 +75,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/user/page-get").hasRole("USER")
 
                         // Admin uchun ruxsat berilgan sahifalar
-                        .requestMatchers("/admin/page-get",
-                                "/auth/active/users",
-                                "/auth/active/block/{id}",
-                                "/auth/active/delete/{id}",
-                                "/auth/inactive/users",
-                                "/auth/inactive/activate/{id}",
-                                "/auth/inactive/{id}").hasRole("ADMIN")
+                        .requestMatchers(ADMIN_PAGES).hasRole("ADMIN")
 
                         // Barcha boshqa so‘rovlar autentifikatsiyani talab qiladi
                         .anyRequest().authenticated()

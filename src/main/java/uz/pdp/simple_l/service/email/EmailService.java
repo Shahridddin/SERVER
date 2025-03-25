@@ -1,4 +1,4 @@
-package uz.pdp.simple_l.service;
+package uz.pdp.simple_l.service.email;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

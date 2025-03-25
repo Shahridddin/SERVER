@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uz.pdp.simple_l.configuration.CustomAuthenticationSuccessHandler;
 import uz.pdp.simple_l.dto.auth.AuthUserCreateDto;
-import uz.pdp.simple_l.service.AuthUserCreateService;
+import uz.pdp.simple_l.service.auth.AuthUserCreateService;
 
 @Controller
 public class RegisterController {
