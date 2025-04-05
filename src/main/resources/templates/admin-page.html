@@ -39,6 +39,20 @@
         .btn:hover, .btn:active {
             transform: scale(1.05); /* Tugma biroz kattalashadi */
         }
+
+        /* Matn uzun bo‘lsa, avtomatik ravishda so‘zlarni bo‘lish */
+        p {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Ekran o‘lchamiga qarab moslashuvchan qilish */
+        .container {
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
     </style>
 </head>
 <body class="text-white">

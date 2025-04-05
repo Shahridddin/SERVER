@@ -25,6 +25,7 @@ public class SecurityConfiguration {
 
     private static final String[] PUBLIC_PAGES = {
             "/auth/login",
+            "/file/upload",
             "/auth/check-login",
             "/auth/register",
             "/auth/create",
@@ -56,7 +57,7 @@ public class SecurityConfiguration {
             "/auth/category/add/{id}",
             "/auth/category/{id}/save-book",
             "/auth/category/add",
-            "/auth/book/open/{id}"
+            "/auth/book/add/page",
     };
 
     public SecurityConfiguration(AuthUserRepository authUserRepository, CustomAuthenticationSuccessHandler successHandler) {
