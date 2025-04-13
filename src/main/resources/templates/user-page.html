@@ -121,7 +121,34 @@
 
     <!-- 📚 Kategoriya Bo‘limi -->
     <section class="mt-16 px-4">
-        <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">📂 Kategoriyalar</h2>
+        <!-- Sarlavha va tugmalar -->
+        <div class="relative mb-10">
+            <!-- Tugmalar chapda -->
+            <div class="absolute left-0 flex gap-4">
+                <a href="#" class="w-32 h-8 bg-teal-500 text-white text-sm rounded-lg shadow hover:bg-teal-600 transition flex items-center justify-center">
+                    🛒 Sotuvda
+                </a>
+                <a href="#" class="w-32 h-8 bg-rose-500 text-white text-sm rounded-lg shadow hover:bg-rose-600 transition flex items-center justify-center">
+                    💸 Chegirma
+                </a>
+                <form action="/saved/books" method="get">
+                    <button type="submit" class="w-32 h-8 bg-pink-400 text-white text-sm rounded-lg shadow hover:bg-pink-500 transition flex items-center justify-center">
+                        ♡ Saralangan
+                    </button>
+                </form>
+               <!-- <form action="/categories" method="get">
+                    <button type="submit" class="w-32 h-8 bg-cyan-500 text-white text-sm rounded-lg shadow hover:bg-cyan-600 transition flex items-center justify-center">
+                        📂 Kategoriyalar
+                    </button>
+                </form>-->
+
+            </div>
+
+            <!-- Sarlavha markazda -->
+            <h2 class="text-3xl font-bold text-center text-gray-800">
+                📂 Kategoriyalar
+            </h2>
+        </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
 
             <!-- Kategoriya kartasi shabloni -->
@@ -230,6 +257,12 @@
                     <span class="ml-2">Sozlamalar</span>
                 </button>
             </form>
+            <form action="#" method="GET">
+                <button type="submit" class="flex items-center p-3 rounded hover:bg-gray-200 transition w-full text-left">
+                    <span class="text-2xl">🤖</span>
+                    <span class="ml-2">eKutubxona support</span>
+                </button>
+            </form>
             <form action="/auth/logout-page" method="GET">
                 <button type="submit" class="flex items-center p-3 text-red-600 rounded hover:bg-gray-200 transition w-full text-left">
                     <span class="text-2xl">➡️</span>
@@ -243,6 +276,10 @@
     <!-- Kitoblar Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
         <div th:each="book : ${session.books}" class="book-card bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
+            <!-- ❤️ Yurakcha belgi tugmasi -->
+            <form th:action="@{/saved/book/{id}(id=${book.id})}" method="post" class="absolute top-2 right-2">
+                <button type="submit" class="heart-button text-gray-400 hover:text-red-500 text-xl transition">♡</button>
+            </form>
             <div class="flex justify-center">
                 <!-- Rasmni dinamik tarzda chiqarish -->
                 <img th:src="@{/images/{coverFileName}(coverFileName=${book.coverFileGeneratedName})}"
@@ -257,7 +294,7 @@
 
                 <div class="flex justify-between mt-4">
                     <form th:action="@{/book/open/{fileName}(fileName=${book.getFileGeneratedName()})}" method="get" target="_blank">
-                        <button class="open-btn" type="submit">Open</button>
+                        <button class="open-btn" type="submit">Ochish</button>
                     </form>
 
                     <form th:action="@{/book/{fileName}(fileName=${book.getFileGeneratedName()})}" method="get">

@@ -9,13 +9,15 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class CustomUserDetails implements UserDetails {
+    private final Long id;
     private final String username;
     private final String password;
     private final String email;
     private final boolean isActive;
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public CustomUserDetails(String username, String password, String email, boolean isActive, AuthRole role) {
+    public CustomUserDetails(Long id, String username, String password, String email, boolean isActive, AuthRole role) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -40,6 +42,10 @@ public class CustomUserDetails implements UserDetails {
 
     public String getEmail() {
         return email;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     @Override

@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import uz.pdp.simple_l.entity.AuthUser;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public interface AuthUserRepository extends JpaRepository<AuthUser, Long> {
@@ -25,4 +27,5 @@ public interface AuthUserRepository extends JpaRepository<AuthUser, Long> {
 
     @Query("SELECT count(u) FROM AuthUser u WHERE u.isActive = true")
     long countActiveUsers();
+
 }

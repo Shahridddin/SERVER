@@ -9,12 +9,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import uz.pdp.simple_l.entity.AuthUser;
 import uz.pdp.simple_l.entity.Book;
 import uz.pdp.simple_l.repository.AuthUserRepository;
 import uz.pdp.simple_l.repository.BookRepository;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor

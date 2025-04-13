@@ -25,6 +25,10 @@ public class BookSearchController {
     @GetMapping("/book/search")
     public String bookSearch(@RequestParam String query, Model model) {
         BookCriteria criteria = new BookCriteria();
+
+        if (query == null || query.isEmpty()) {
+            return "redirect:/user/page-get";
+        }
         criteria.setQuery(query);
 
         List<Book> books = bookRepository.findAll(bookGlobalSearch.getSpecification(criteria));
