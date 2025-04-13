@@ -33,6 +33,7 @@ public class SecurityConfiguration {
             "/send/**",
             "/new/**",
             "/exception",
+            "/api/support",
             "/css/**",
             "/js/**"
     };
@@ -47,7 +48,10 @@ public class SecurityConfiguration {
 
     private static final String[] USERS_PAGES = {
             "/user/**",
-            "/images/**"
+            "/images/**",
+            "/saved/book/{id}",
+            "/saved/books",
+            "/saved/book/delete/{id}"
     };
 
     public SecurityConfiguration(AuthUserRepository authUserRepository, CustomAuthenticationSuccessHandler successHandler) {
@@ -63,7 +67,7 @@ public class SecurityConfiguration {
 
                         .requestMatchers(PUBLIC_PAGES).permitAll()
 
-                        .requestMatchers("/auth/logout-page", "/book/search","/book/**").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers("/auth/logout-page", "/book/search", "/book/**").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(USERS_PAGES).hasRole("USER")
 
                         .requestMatchers(ADMIN_PAGES).hasRole("ADMIN")
@@ -104,6 +108,7 @@ public class SecurityConfiguration {
             AuthUser authUser = byUsername.get();
 
             return new CustomUserDetails(
+                    authUser.getId(),
                     authUser.getUsername(),
                     authUser.getPassword(),
                     authUser.getEmail(),

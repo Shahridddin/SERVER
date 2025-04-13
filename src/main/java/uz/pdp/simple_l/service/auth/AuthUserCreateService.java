@@ -21,7 +21,7 @@ public class AuthUserCreateService implements AuthUserService {
 
 
     @Override
-    public UUID create(AuthUserCreateDto dto) {
+    public Long create(AuthUserCreateDto dto) {
         AuthUser authUser = new AuthUser();
         authUser.setEmail(dto.email());
         authUser.setUsername(dto.username());
